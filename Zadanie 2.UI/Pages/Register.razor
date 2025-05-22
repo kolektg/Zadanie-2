@@ -1,0 +1,22 @@
+﻿@page "/register"
+@using Zadanie_2.UI.Models
+@using Microsoft.AspNetCore.Components.Forms
+
+<h3>Register</h3>
+
+<EditForm Model="@newUser" OnValidSubmit="@HandleRegister">
+    <InputText @bind-value="newUser.Username" placeholder="Username" />
+    <InputText @bind-value="newUser.Email" placeholder="Email" />
+    <InputText @bind-value="newUser.Password" type="password" placeholder="Password" />
+    <button type="submit">Register</button>
+</EditForm>
+
+@code {
+    private UserModel newUser = new();
+
+    private void HandleRegister()
+    {
+        Console.WriteLine($"Register: {newUser.Username}, {newUser.Email}, {newUser.Password}");
+        // Tu dodasz wysyłkę danych do API (POST do endpointu rejestracji)
+    }
+}
