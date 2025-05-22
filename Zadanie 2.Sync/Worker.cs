@@ -1,3 +1,9 @@
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+
 namespace Zadanie_2.Sync
 {
     public class Worker : BackgroundService
@@ -13,11 +19,10 @@ namespace Zadanie_2.Sync
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                if (_logger.IsEnabled(LogLevel.Information))
-                {
-                    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                }
-                await Task.Delay(1000, stoppingToken);
+                _logger.LogInformation("🔄 Synchronizacja uruchomiona: {time}", DateTimeOffset.Now);
+
+                
+                await Task.Delay(5000, stoppingToken);
             }
         }
     }
